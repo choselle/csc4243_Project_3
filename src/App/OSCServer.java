@@ -118,7 +118,16 @@ public class OSCServer {
 						if (messageEquals(message, "/3/push7")) incrementComboBox(PostProfileComposite.combo_1);
 						if (messageEquals(message, "/3/push8")) decrementComboBox(PostProfileComposite.combo_1);
 						if (messageEquals(message, "/3/push11")) submitProfile();
-						if (messageEquals(message, "/3/push12")) PostProfileComposite.backButtonPressed();
+						if (messageEquals(message, "/3/push12"))
+							try {
+								PostProfileComposite.backButtonPressed();
+							} catch (UnknownHostException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (SocketException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						//Page 4
 						if (messageEquals(message, "/4/push13")) incrementComboBox(PostTeamComposite.combo);
 						if (messageEquals(message, "/4/push14")) decrementComboBox(PostTeamComposite.combo);
@@ -127,7 +136,16 @@ public class OSCServer {
 						if (messageEquals(message, "/4/push17")) incrementComboBox(PostTeamComposite.combo_2);
 						if (messageEquals(message, "/4/push18")) decrementComboBox(PostTeamComposite.combo_2);
 						if (messageEquals(message, "/4/push19")) submitTeam();
-						if (messageEquals(message, "/4/push20")) PostTeamComposite.backButtonPressed();
+						if (messageEquals(message, "/4/push20"))
+							try {
+								PostTeamComposite.backButtonPressed();
+							} catch (UnknownHostException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (SocketException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 					}
 				});			
 			}

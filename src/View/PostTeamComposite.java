@@ -1,5 +1,8 @@
 package View;
 
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -43,7 +46,15 @@ public class PostTeamComposite extends Composite {
 		btnBack.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				backButtonPressed();
+				try {
+					backButtonPressed();
+				} catch (UnknownHostException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SocketException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -106,7 +117,9 @@ public class PostTeamComposite extends Composite {
 		lblNewLabel_6.setImage(SWTResourceManager.getImage(PostTeamComposite.class, "/images/eye.gif"));
 	}
 
-	public static void backButtonPressed() {
+	public static void backButtonPressed() throws UnknownHostException, SocketException {
+		OSCServer.turnLEDOff();
+		OSCServer.turnLEDOn("2");
 		ProfileViewComposite.ptc.setVisible(false);
 		Stage1.pvc.setVisible(true);
 	}

@@ -1,5 +1,8 @@
 package View;
 
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -9,6 +12,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import App.OSCServer;
 
 public class PostProfileComposite extends Composite {
 	private final Text nameField;
@@ -97,12 +102,22 @@ public class PostProfileComposite extends Composite {
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				backButtonPressed();
+				try {
+					backButtonPressed();
+				} catch (UnknownHostException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SocketException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 	}
 
-	public static void backButtonPressed() {
+	public static void backButtonPressed() throws UnknownHostException, SocketException {
+		OSCServer.turnLEDOff();
+		OSCServer.turnLEDOn("2");
 		ProfileViewComposite.ppc.setVisible(false);
 		Stage1.pvc.setVisible(true);
 	}
