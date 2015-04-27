@@ -10,11 +10,8 @@ import com.illposed.osc.*;
 
 public class OSCServer2 {
 	
-<<<<<<< HEAD
-=======
 	//test
 	
->>>>>>> 01a6d8dcc0e82a35b067978db99920726215b1ac
 	private OSCPortIn receiver;
 	private OSCListener listener;
 	int receiverPort = 8001;

@@ -5,7 +5,6 @@
 
 package App;
 
-<<<<<<< HEAD
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -17,32 +16,22 @@ import org.eclipse.swt.widgets.*;
 
 import View.*;
 
-=======
 import javax.swing.JComboBox;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.*;
 import View.*;
->>>>>>> 01a6d8dcc0e82a35b067978db99920726215b1ac
 import com.illposed.osc.*;
 
 public class OSCServer {
 	
 	private OSCPortIn receiver;
 	private OSCListener listener;
-<<<<<<< HEAD
 	private static OSCPortOut sender;
 	int receiverPort = 8000;
 	
 	public void launchOSServer() throws java.net.SocketException, UnknownHostException {
 		receiver = new OSCPortIn(receiverPort);
 		sender = new OSCPortOut(InetAddress.getByName("167.96.67.194"), 9000);
-
-=======
-	int receiverPort = 8000;
-	
-	public void launchOSServer() throws java.net.SocketException {
-		receiver = new OSCPortIn(receiverPort);
->>>>>>> 01a6d8dcc0e82a35b067978db99920726215b1ac
 		listener = new OSCListener() {
 			public void acceptMessage(java.util.Date time, final OSCMessage message) {
 				Float messageArguments = (Float) message.getArguments()[0];
@@ -55,16 +44,12 @@ public class OSCServer {
 					public void run() {
 						//Page1
 						if (messageEquals(message, "/1/push1")) { 
-<<<<<<< HEAD
-=======
 							System.out.println("OSC1 Pressed------");
->>>>>>> 01a6d8dcc0e82a35b067978db99920726215b1ac
 							if (!Stage1.composite.isDisposed()) {
 								Stage1.txtPawsid.setText("mtiger1"); 
 								Stage1.txtPassword.setText("********"); 
 							}
 						}
-<<<<<<< HEAD
 						if (messageEquals(message, "/1/push2"))
 							try {
 								Stage1.loginPressed();
@@ -96,12 +81,37 @@ public class OSCServer {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-=======
-						if (messageEquals(message, "/1/push2")) Stage1.loginPressed();
+						if (messageEquals(message, "/1/push2"))
+							try {
+								Stage1.loginPressed();
+							} catch (UnknownHostException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (SocketException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						//Page 2
-						if (messageEquals(message, "/2/push3")) ProfileViewComposite.PostProfilePressed();
-						if (messageEquals(message, "/2/push4")) ProfileViewComposite.PostTeamPressed();
->>>>>>> 01a6d8dcc0e82a35b067978db99920726215b1ac
+						if (messageEquals(message, "/2/push3"))
+							try {
+								ProfileViewComposite.PostProfilePressed();
+							} catch (UnknownHostException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (SocketException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						if (messageEquals(message, "/2/push4"))
+							try {
+								ProfileViewComposite.PostTeamPressed();
+							} catch (UnknownHostException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (SocketException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						//Page 3
 						if (messageEquals(message, "/3/push5")) incrementComboBox(PostProfileComposite.combo);
 						if (messageEquals(message, "/3/push6")) decrementComboBox(PostProfileComposite.combo);
@@ -134,7 +144,6 @@ public class OSCServer {
 		receiver.startListening();
 	}
 	
-<<<<<<< HEAD
 	public static void turnLEDOn(String led) throws UnknownHostException, SocketException {
 		Object args[] = new Object[1];
 		args[0] = new Float(1.0);
@@ -166,8 +175,6 @@ public class OSCServer {
 		}
 	}
 	
-=======
->>>>>>> 01a6d8dcc0e82a35b067978db99920726215b1ac
 	//checks to see if the message is equal to the conditional string
 	public boolean messageEquals(OSCMessage message, String str) {
 		Float messageArguments = (Float) message.getArguments()[0];
