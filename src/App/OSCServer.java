@@ -17,9 +17,13 @@ import org.eclipse.swt.widgets.*;
 import View.*;
 
 import javax.swing.JComboBox;
+
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.*;
+import org.eclipse.wb.swt.SWTResourceManager;
+
 import View.*;
+
 import com.illposed.osc.*;
 
 public class OSCServer {
@@ -61,7 +65,11 @@ public class OSCServer {
 						}
 						if (messageEquals(message, "/1/push2"))
 							try {
+								;
 								Stage1.loginPressed();
+								ProfileViewComposite.lblProfilePic.setImage(SWTResourceManager.getImage(ProfileViewComposite.class, "/images/tiger.png"));
+								ProfileViewComposite.tltmWelcomeMike.setText("Welcome, Mike!");
+								ProfileViewComposite.lblNewLabel_1.setText("Mike the Tiger");
 							} catch (UnknownHostException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();

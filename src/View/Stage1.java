@@ -81,6 +81,7 @@ public class Stage1 {
 
 	/**
 	 * Create contents of the window.
+	 * @wbp.parser.entryPoint
 	 */
 	protected void createContents() {
 		shell = new Shell();
@@ -295,24 +296,24 @@ public class Stage1 {
 
 		lblNewLabel_3 = new Label(composite, SWT.NONE);
 		lblNewLabel_3.setAlignment(SWT.CENTER);
-		lblNewLabel_3.setFont(SWTResourceManager.getFont("Moire ExtraBold", 28, SWT.BOLD));
+		lblNewLabel_3.setFont(SWTResourceManager.getFont("Moire ExtraBold", 36, SWT.BOLD));
 		lblNewLabel_3.setBounds(10, 631, 1864, 45);
 		lblNewLabel_3.setText("Every Student is an Athlete!");
 		lblNewLabel_3.setForeground(SWTResourceManager.getColor(245, 197, 39));
 		lblNewLabel_3.setBackground(SWTResourceManager.getColor(121, 8, 196));
 
 		txtPawsid = new Text(composite, SWT.BORDER);
-		txtPawsid.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		txtPawsid.setFont(SWTResourceManager.getFont("Segoe UI", 20, SWT.NORMAL));
 		txtPawsid.setBounds(970, 710, 245, 45);
 
 		txtPassword = new Text(composite, SWT.BORDER);
-		txtPassword.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		txtPassword.setFont(SWTResourceManager.getFont("Segoe UI", 20, SWT.NORMAL));
 		txtPassword.setBounds(970, 761, 245, 45);
 
 		lblPawsid = new Label(composite, SWT.NONE);
 		lblPawsid.setText("PAWSID:");
 		lblPawsid.setForeground(SWTResourceManager.getColor(245, 197, 39));
-		lblPawsid.setFont(SWTResourceManager.getFont("Moire ExtraBold", 28, SWT.BOLD));
+		lblPawsid.setFont(SWTResourceManager.getFont("Moire ExtraBold", 36, SWT.BOLD));
 		lblPawsid.setBackground(SWTResourceManager.getColor(121, 8, 196));
 		lblPawsid.setAlignment(SWT.CENTER);
 		lblPawsid.setBounds(722, 710, 221, 45);
@@ -320,13 +321,13 @@ public class Stage1 {
 		lblPassword = new Label(composite, SWT.NONE);
 		lblPassword.setText("password: ");
 		lblPassword.setForeground(SWTResourceManager.getColor(245, 197, 39));
-		lblPassword.setFont(SWTResourceManager.getFont("Moire ExtraBold", 28, SWT.BOLD));
+		lblPassword.setFont(SWTResourceManager.getFont("Moire ExtraBold", 36, SWT.BOLD));
 		lblPassword.setBackground(SWTResourceManager.getColor(121, 8, 196));
 		lblPassword.setAlignment(SWT.CENTER);
 		lblPassword.setBounds(722, 761, 221, 43);
 
 		btnLogin = new Button(composite, SWT.NONE);
-		btnLogin.setFont(SWTResourceManager.getFont("Segoe UI", 28, SWT.NORMAL));
+		btnLogin.setFont(SWTResourceManager.getFont("Segoe UI", 36, SWT.NORMAL));
 		btnLogin.setBounds(793, 835, 165, 60);
 		btnLogin.setText("Login");
 		btnLogin.addSelectionListener(new SelectionAdapter() {
@@ -345,7 +346,7 @@ public class Stage1 {
 		});
 
 		Button btnCancel = new Button(composite, SWT.NONE);
-		btnCancel.setFont(SWTResourceManager.getFont("Segoe UI", 28, SWT.NORMAL));
+		btnCancel.setFont(SWTResourceManager.getFont("Segoe UI", 36, SWT.NORMAL));
 		btnCancel.setText("Cancel");
 		btnCancel.setBounds(970, 835, 165, 60);
 	}

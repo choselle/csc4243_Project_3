@@ -19,6 +19,9 @@ public class ProfileViewComposite extends Composite {
 
 	static PostProfileComposite ppc;
 	static PostTeamComposite ptc;
+	public static Label lblProfilePic;
+	public static ToolItem tltmWelcomeMike;
+	public static Label lblNewLabel_1;
 
 	// Protected Shell shell;
 
@@ -33,8 +36,7 @@ public class ProfileViewComposite extends Composite {
 		setBackground(SWTResourceManager.getColor(70, 29, 124));
 		setBounds(0, 1070, 1920, 1200);
 
-		Label lblProfilePic = new Label(this, SWT.NONE);
-		lblProfilePic.setImage(SWTResourceManager.getImage(ProfileViewComposite.class, "/images/tiger.png"));
+		lblProfilePic = new Label(this, SWT.NONE);
 		lblProfilePic.setBounds(10, 69, 481, 557);
 
 		Button btnPostFreeAgent = new Button(this, SWT.NONE);
@@ -67,16 +69,14 @@ public class ProfileViewComposite extends Composite {
 		toolBar.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
 		toolBar.setBounds(10, 10, 1846, 53);
 
-		ToolItem tltmWelcomeMike = new ToolItem(toolBar, SWT.NONE);
-		tltmWelcomeMike.setText("Welcome, Mike!");
+		tltmWelcomeMike = new ToolItem(toolBar, SWT.NONE);
 
-		Label lblNewLabel_1 = new Label(this, SWT.NONE);
+		lblNewLabel_1 = new Label(this, SWT.NONE);
 		lblNewLabel_1.setAlignment(SWT.CENTER);
 		lblNewLabel_1.setBackground(SWTResourceManager.getColor(70, 29, 124));
 		lblNewLabel_1.setForeground(SWTResourceManager.getColor(253, 208, 35));
-		lblNewLabel_1.setFont(SWTResourceManager.getFont("Moire ExtraBold", 22, SWT.BOLD));
+		lblNewLabel_1.setFont(SWTResourceManager.getFont("Moire ExtraBold", 36, SWT.BOLD));
 		lblNewLabel_1.setBounds(10, 632, 481, 39);
-		lblNewLabel_1.setText("Mike the Tiger");
 
 		Label lblWins = new Label(this, SWT.NONE);
 		lblWins.setAlignment(SWT.CENTER);

@@ -1,4 +1,5 @@
 package App;
+import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
@@ -6,6 +7,7 @@ import javax.swing.JComboBox;
 
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.*;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 import View.*;
 
@@ -45,13 +47,16 @@ public class OSCServer2 extends OSCServer {
 						if (messageEquals(message, "/1/push1")) { 
 							System.out.println("OSC1 Pressed------");
 							if (!Stage1.composite.isDisposed()) {
-								Stage1.txtPawsid.setText("mtiger1"); 
+								Stage1.txtPawsid.setText("sbear3"); 
 								Stage1.txtPassword.setText("********"); 
 							}
 						}
 						if (messageEquals(message, "/1/push2"))
 							try {
 								Stage1.loginPressed();
+								ProfileViewComposite.lblProfilePic.setImage(SWTResourceManager.getImage(ProfileViewComposite.class, "/images/smokeythebear.png"));
+								ProfileViewComposite.tltmWelcomeMike.setText("Welcome, Smokey!");
+								ProfileViewComposite.lblNewLabel_1.setText("Smokey the Bear");
 							} catch (UnknownHostException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();

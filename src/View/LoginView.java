@@ -76,12 +76,12 @@ public class LoginView extends JFrame implements ActionListener {
 		titleLabel = new JLabel("Intramural Sports", JLabel.CENTER);
 		titleLabel.setForeground(new Color(245, 197, 39));
 		titleLabel.setBounds(0, 10, 300, 50);
-		titleLabel.setFont(new Font("Arial Black", Font.BOLD, 30));
+		titleLabel.setFont(new Font("Arial Black", Font.BOLD, 36));
 		panel.add(titleLabel);
 
 		// Phrase label
 		phraseLabel = new JLabel("Every Student is an Athlete!", JLabel.CENTER);
-		phraseLabel.setFont(new Font("Arial Black", Font.ITALIC, 15));
+		phraseLabel.setFont(new Font("Arial Black", Font.ITALIC, 32));
 		phraseLabel.setForeground(new Color(245, 197, 39));
 		phraseLabel.setBounds(0, 360, 300, 50);
 		panel.add(phraseLabel);
