@@ -116,8 +116,8 @@ public class PostProfileComposite extends Composite {
 	}
 
 	public static void backButtonPressed() throws UnknownHostException, SocketException {
-		OSCServer.turnLEDOff();
-		OSCServer.turnLEDOn("2");
+		//OSCServer.turnLEDOff();
+		//OSCServer.turnLEDOn("2");
 		ProfileViewComposite.ppc.setVisible(false);
 		Stage1.pvc.setVisible(true);
 	}

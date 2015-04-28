@@ -61,7 +61,7 @@ public class Stage1 {
 	private Label lblPawsid;
 	private Label lblPassword;
 
-	static ProfileViewComposite pvc;
+	public static ProfileViewComposite pvc;
 
 
 
@@ -296,7 +296,7 @@ public class Stage1 {
 
 		lblNewLabel_3 = new Label(composite, SWT.NONE);
 		lblNewLabel_3.setAlignment(SWT.CENTER);
-		lblNewLabel_3.setFont(SWTResourceManager.getFont("Moire ExtraBold", 36, SWT.BOLD));
+		lblNewLabel_3.setFont(SWTResourceManager.getFont("Moire ExtraBold", 32, SWT.BOLD));
 		lblNewLabel_3.setBounds(10, 631, 1864, 45);
 		lblNewLabel_3.setText("Every Student is an Athlete!");
 		lblNewLabel_3.setForeground(SWTResourceManager.getColor(245, 197, 39));
@@ -313,7 +313,7 @@ public class Stage1 {
 		lblPawsid = new Label(composite, SWT.NONE);
 		lblPawsid.setText("PAWSID:");
 		lblPawsid.setForeground(SWTResourceManager.getColor(245, 197, 39));
-		lblPawsid.setFont(SWTResourceManager.getFont("Moire ExtraBold", 36, SWT.BOLD));
+		lblPawsid.setFont(SWTResourceManager.getFont("Moire ExtraBold", 32, SWT.BOLD));
 		lblPawsid.setBackground(SWTResourceManager.getColor(121, 8, 196));
 		lblPawsid.setAlignment(SWT.CENTER);
 		lblPawsid.setBounds(722, 710, 221, 45);
@@ -321,13 +321,13 @@ public class Stage1 {
 		lblPassword = new Label(composite, SWT.NONE);
 		lblPassword.setText("password: ");
 		lblPassword.setForeground(SWTResourceManager.getColor(245, 197, 39));
-		lblPassword.setFont(SWTResourceManager.getFont("Moire ExtraBold", 36, SWT.BOLD));
+		lblPassword.setFont(SWTResourceManager.getFont("Moire ExtraBold", 32, SWT.BOLD));
 		lblPassword.setBackground(SWTResourceManager.getColor(121, 8, 196));
 		lblPassword.setAlignment(SWT.CENTER);
 		lblPassword.setBounds(722, 761, 221, 43);
 
 		btnLogin = new Button(composite, SWT.NONE);
-		btnLogin.setFont(SWTResourceManager.getFont("Segoe UI", 36, SWT.NORMAL));
+		btnLogin.setFont(SWTResourceManager.getFont("Segoe UI", 32, SWT.NORMAL));
 		btnLogin.setBounds(793, 835, 165, 60);
 		btnLogin.setText("Login");
 		btnLogin.addSelectionListener(new SelectionAdapter() {
@@ -346,22 +346,24 @@ public class Stage1 {
 		});
 
 		Button btnCancel = new Button(composite, SWT.NONE);
-		btnCancel.setFont(SWTResourceManager.getFont("Segoe UI", 36, SWT.NORMAL));
+		btnCancel.setFont(SWTResourceManager.getFont("Segoe UI", 32, SWT.NORMAL));
 		btnCancel.setText("Cancel");
 		btnCancel.setBounds(970, 835, 165, 60);
 	}
 
 	public static void loginPressed() throws UnknownHostException, SocketException {
 		if (!composite.isDisposed()) {
-			OSCServer.turnLEDOff();
-			OSCServer.turnLEDOn("2");
+			//OSCServer.turnLEDOff();
+			//OSCServer.turnLEDOn("2");
 			if (pvc == null) {
-				composite.dispose();
+				//composite.dispose();
+				composite.setVisible(false);
 				pvc = new ProfileViewComposite(shell, SWT.NONE);
 				pvc.setBounds(0, 1170, 1920, 1200);
 			} 
 			else {
 				pvc.setVisible(true);
+				composite.setVisible(false);
 			}
 		}
 	}

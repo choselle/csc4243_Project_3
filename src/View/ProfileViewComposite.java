@@ -17,8 +17,8 @@ import App.OSCServer;
 
 public class ProfileViewComposite extends Composite {
 
-	static PostProfileComposite ppc;
-	static PostTeamComposite ptc;
+	public static PostProfileComposite ppc;
+	public static PostTeamComposite ptc;
 	public static Label lblProfilePic;
 	public static ToolItem tltmWelcomeMike;
 	public static Label lblNewLabel_1;
@@ -175,31 +175,40 @@ public class ProfileViewComposite extends Composite {
 	}
 
 	public static void PostProfilePressed() throws UnknownHostException, SocketException {
-		if (!(ppc != null)) {
-			OSCServer.turnLEDOff();
-			OSCServer.turnLEDOn("3");
+		if (ppc == null) {
+			//OSCServer.turnLEDOff();
+			//OSCServer.turnLEDOn("3");
 			ppc = new PostProfileComposite(Stage1.shell, SWT.NONE);
 			ppc.setBounds(0, 1170, 1920, 1200);
 		}
 		else {
+			//OSCServer.turnLEDOff();
+			//OSCServer.turnLEDOn("3");
 			ppc.setVisible(true);
 		}
 
 		Stage1.pvc.setVisible(false);
+		if ((ptc != null))
+			ProfileViewComposite.ptc.setVisible(false);
+		
 	}
 
 	public static void PostTeamPressed() throws UnknownHostException, SocketException {
-		if (!(ptc != null)) {
-			OSCServer.turnLEDOff();
-			OSCServer.turnLEDOn("4");
+		if (ptc == null) {
+			//OSCServer.turnLEDOff();
+			//OSCServer.turnLEDOn("4");
 			ptc = new PostTeamComposite(Stage1.shell, SWT.NONE);
 			ptc.setBounds(0, 1170, 1920, 1200);
 		}
 		else {
+			//OSCServer.turnLEDOff();
+			//OSCServer.turnLEDOn("4");
 			ptc.setVisible(true);
 		}
 
 		Stage1.pvc.setVisible(false);
+		if (ppc != null)
+			ProfileViewComposite.ppc.setVisible(false);
 	}
 
 	@Override

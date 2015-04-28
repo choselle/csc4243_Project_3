@@ -19,10 +19,12 @@ public class OSCServer2 extends OSCServer {
 	
 	private OSCPortIn receiver;
 	private OSCListener listener;
+	private static OSCPortOut sender;
 	int receiverPort = 8001;
 	
-	public void launchOSServer() throws java.net.SocketException {
+	public void launchOSServer() throws java.net.SocketException, UnknownHostException {
 		receiver = new OSCPortIn(receiverPort);
+		sender = new OSCPortOut(InetAddress.getByName("192.168.1.117"), 9001);
 		listener = new OSCListener() {
 			public void acceptMessage(java.util.Date time, final OSCMessage message) {
 				Float messageArguments = (Float) message.getArguments()[0];
@@ -33,26 +35,19 @@ public class OSCServer2 extends OSCServer {
 				
 				Display.getDefault().syncExec(new Runnable() {
 					public void run() {
-						try {
-							OSCServer.turnLEDOn("6");
-						} catch (UnknownHostException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SocketException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-
 						//Page1
 						if (messageEquals(message, "/1/push1")) { 
 							System.out.println("OSC1 Pressed------");
 							if (!Stage1.composite.isDisposed()) {
-								Stage1.txtPawsid.setText("sbear3"); 
+								Stage1.txtPawsid.setText("sbear2"); 
 								Stage1.txtPassword.setText("********"); 
 							}
 						}
 						if (messageEquals(message, "/1/push2"))
 							try {
+								turnLEDOff();
+								turnLEDOn("2");
+								LoginConnected(1);
 								Stage1.loginPressed();
 								ProfileViewComposite.lblProfilePic.setImage(SWTResourceManager.getImage(ProfileViewComposite.class, "/images/smokeythebear.png"));
 								ProfileViewComposite.tltmWelcomeMike.setText("Welcome, Smokey!");
@@ -68,6 +63,8 @@ public class OSCServer2 extends OSCServer {
 						if (messageEquals(message, "/1/push3"))
 							try {
 								ProfileViewComposite.PostProfilePressed();
+								turnLEDOff();
+								turnLEDOn("3");
 							} catch (UnknownHostException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -78,16 +75,8 @@ public class OSCServer2 extends OSCServer {
 						if (messageEquals(message, "/1/push4"))
 							try {
 								ProfileViewComposite.PostTeamPressed();
-							} catch (UnknownHostException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (SocketException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						if (messageEquals(message, "/1/push5"))
-							try {
-								Stage1.loginPressed();
+								turnLEDOff();
+								turnLEDOn("4");
 							} catch (UnknownHostException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -96,32 +85,22 @@ public class OSCServer2 extends OSCServer {
 								e.printStackTrace();
 							}
 						//Page 3
-						if (messageEquals(message, "/1/push6")) incrementComboBox(PostProfileComposite.combo);
-						if (messageEquals(message, "/1/push7")) decrementComboBox(PostProfileComposite.combo);
-						if (messageEquals(message, "/1/push8")) incrementComboBox(PostProfileComposite.combo_1);
-						if (messageEquals(message, "/1/push9")) decrementComboBox(PostProfileComposite.combo_1);
-						if (messageEquals(message, "/1/push10")) submitProfile();
-						if (messageEquals(message, "/1/push10-"))
-							try {
-								PostProfileComposite.backButtonPressed();
-							} catch (UnknownHostException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (SocketException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+						if (messageEquals(message, "/1/push5")) incrementComboBox(PostProfileComposite.combo);
+						if (messageEquals(message, "/1/push6")) decrementComboBox(PostProfileComposite.combo);
+						if (messageEquals(message, "/1/push7")) incrementComboBox(PostProfileComposite.combo_1);
+						if (messageEquals(message, "/1/push8")) decrementComboBox(PostProfileComposite.combo_1);
+						if (messageEquals(message, "/1/push9")) submitProfile();
 						//Page 4
-						if (messageEquals(message, "/1/push11")) incrementComboBox(PostTeamComposite.combo);
-						if (messageEquals(message, "/1/push12")) decrementComboBox(PostTeamComposite.combo);
-						if (messageEquals(message, "/1/push13")) incrementComboBox(PostTeamComposite.combo_1);
-						if (messageEquals(message, "/1/push14")) decrementComboBox(PostTeamComposite.combo_1);
-						if (messageEquals(message, "/1/push15")) incrementComboBox(PostTeamComposite.combo_2);
-						if (messageEquals(message, "/1/push16")) decrementComboBox(PostTeamComposite.combo_2);
-						if (messageEquals(message, "/1/push17")) submitTeam();
-						if (messageEquals(message, "/1/push18"))
+						if (messageEquals(message, "/1/push10")) incrementComboBox(PostTeamComposite.combo);
+						if (messageEquals(message, "/1/push11")) decrementComboBox(PostTeamComposite.combo);
+						if (messageEquals(message, "/1/push12")) incrementComboBox(PostTeamComposite.combo_1);
+						if (messageEquals(message, "/1/push13")) decrementComboBox(PostTeamComposite.combo_1);
+						if (messageEquals(message, "/1/push14")) incrementComboBox(PostTeamComposite.combo_2);
+						if (messageEquals(message, "/1/push15")) decrementComboBox(PostTeamComposite.combo_2);
+						if (messageEquals(message, "/1/push16")) submitTeam();
+						if (messageEquals(message, "/1/push17")) {
 							try {
-								PostTeamComposite.backButtonPressed();
+								OSCServer.turnLEDOff();
 							} catch (UnknownHostException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -129,10 +108,41 @@ public class OSCServer2 extends OSCServer {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							try {
+								turnLEDOff();
+								turnLEDOn("1");
+							} catch (UnknownHostException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (SocketException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							if(ProfileViewComposite.ptc != null)
+								ProfileViewComposite.ptc.setVisible(false);
+							if(ProfileViewComposite.ppc != null)
+								ProfileViewComposite.ppc.setVisible(false);
+							if(Stage1.pvc != null)
+								Stage1.pvc.setVisible(false);
+							if(Stage1.composite != null)
+								Stage1.composite.setVisible(true);
+							try {
+								LoginConnected(0);
+							} catch (UnknownHostException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (SocketException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+							
 					}
 				});			
 			}
 		};
+		
+		
 		
 		//Add all the components to the listener.
 		String[] componentArray = {"/1/push1", "/1/push2", "/1/push3", "/1/push4", "/1/push5", "/1/push6", "/1/push7", "/1/push8", "/1/push9", "/1/push10", 
@@ -144,4 +154,54 @@ public class OSCServer2 extends OSCServer {
 		System.out.println("Server is listening on port " + receiverPort);
 		receiver.startListening();
 	}
+	
+	public static void turnLEDOn(String led) throws UnknownHostException, SocketException {
+		Object args[] = new Object[1];
+		args[0] = new Float(1.0);
+		OSCMessage msg = new OSCMessage("/1/led"+led, args);
+		try {
+			sender.send(msg);
+			System.out.println("sender called with address " + 
+					msg.getAddress() + "; arguments: " + 
+					(Float) msg.getArguments()[0]);
+		} catch (Exception e) {
+			System.out.println("Could not send");
+		}
+	}
+	
+	//turns all LED lights off in the TouchOSC interface
+	public static void turnLEDOff() throws UnknownHostException, SocketException {
+		Object args[] = new Object[1];
+		args[0] = new Float(0.0);
+		OSCMessage msg1 = new OSCMessage("/1/led1", args);
+		OSCMessage msg2 = new OSCMessage("/1/led2", args);
+		OSCMessage msg3 = new OSCMessage("/1/led3", args);
+		OSCMessage msg4 = new OSCMessage("/1/led4", args);
+		try {
+			sender.send(msg1);
+			sender.send(msg2);
+			sender.send(msg3);
+			sender.send(msg4);
+		} catch (Exception e) {
+			System.out.println("Could not send");
+		}
+	}
+	
+	public void LoginConnected(int i) throws UnknownHostException, SocketException {
+		Object args[] = new Object[1];
+		if (i == 1)
+			args[0] = new Float(1.0);
+		else
+			args[0] = new Float(0.0);
+		OSCMessage msg = new OSCMessage("/1/led6", args);
+		try {
+			sender.send(msg);
+			System.out.println("sender called with address " + 
+					msg.getAddress() + "; arguments: " + 
+					(Float) msg.getArguments()[0]);
+		} catch (Exception e) {
+			System.out.println("Could not send");
+		}
+	}
+
 }
