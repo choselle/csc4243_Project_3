@@ -354,9 +354,14 @@ public class Stage1 {
 		if (!composite.isDisposed()) {
 			OSCServer.turnLEDOff();
 			OSCServer.turnLEDOn("2");
-			composite.dispose();
-			pvc = new ProfileViewComposite(shell, SWT.NONE);
-			pvc.setBounds(0, 1170, 1920, 1200);
+			if (pvc == null) {
+				composite.dispose();
+				pvc = new ProfileViewComposite(shell, SWT.NONE);
+				pvc.setBounds(0, 1170, 1920, 1200);
+			} 
+			else {
+				pvc.setVisible(true);
+			}
 		}
 	}
 }

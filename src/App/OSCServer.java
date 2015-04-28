@@ -42,6 +42,15 @@ public class OSCServer {
 				
 				Display.getDefault().syncExec(new Runnable() {
 					public void run() {
+						try { 
+							turnLEDOn("1");
+						} catch (UnknownHostException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SocketException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						//Page1
 						if (messageEquals(message, "/1/push1")) { 
 							System.out.println("OSC1 Pressed------");
@@ -50,37 +59,6 @@ public class OSCServer {
 								Stage1.txtPassword.setText("********"); 
 							}
 						}
-						if (messageEquals(message, "/1/push2"))
-							try {
-								Stage1.loginPressed();
-							} catch (UnknownHostException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (SocketException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						//Page 2
-						if (messageEquals(message, "/2/push3"))
-							try {
-								ProfileViewComposite.PostProfilePressed();
-							} catch (UnknownHostException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (SocketException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						if (messageEquals(message, "/2/push4"))
-							try {
-								ProfileViewComposite.PostTeamPressed();
-							} catch (UnknownHostException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (SocketException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
 						if (messageEquals(message, "/1/push2"))
 							try {
 								Stage1.loginPressed();
@@ -162,6 +140,7 @@ public class OSCServer {
 		receiver.startListening();
 	}
 	
+	//turns specific LED on in the TouchOSC interface
 	public static void turnLEDOn(String led) throws UnknownHostException, SocketException {
 		Object args[] = new Object[1];
 		args[0] = new Float(1.0);
@@ -176,6 +155,7 @@ public class OSCServer {
 		}
 	}
 	
+	//turns all LED lights off in the TouchOSC interface
 	public static void turnLEDOff() throws UnknownHostException, SocketException {
 		Object args[] = new Object[1];
 		args[0] = new Float(0.0);

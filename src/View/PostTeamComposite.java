@@ -117,7 +117,7 @@ public class PostTeamComposite extends Composite {
 		lblNewLabel_6.setImage(SWTResourceManager.getImage(PostTeamComposite.class, "/images/eye.gif"));
 	}
 
-	public static void backButtonPressed() throws UnknownHostException, SocketException {
+	public static void backButtonPressed() throws UnknownHostException, SocketException { 
 		OSCServer.turnLEDOff();
 		OSCServer.turnLEDOn("2");
 		ProfileViewComposite.ptc.setVisible(false);
