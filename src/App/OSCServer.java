@@ -137,15 +137,6 @@ public class OSCServer {
 							}
 						if (messageEquals(message, "/2/push21")) {
 							try {
-								OSCServer.turnLEDOff();
-							} catch (UnknownHostException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (SocketException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							try {
 								turnLEDOff();
 								turnLEDOn("1");
 							} catch (UnknownHostException e) {

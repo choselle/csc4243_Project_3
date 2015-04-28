@@ -19,7 +19,7 @@ public class OSCServer2 extends OSCServer {
 	
 	private OSCPortIn receiver;
 	private OSCListener listener;
-	private static OSCPortOut sender;
+	protected static OSCPortOut sender;
 	int receiverPort = 8001;
 	
 	public void launchOSServer() throws java.net.SocketException, UnknownHostException {
@@ -99,15 +99,6 @@ public class OSCServer2 extends OSCServer {
 						if (messageEquals(message, "/1/push15")) decrementComboBox(PostTeamComposite.combo_2);
 						if (messageEquals(message, "/1/push16")) submitTeam();
 						if (messageEquals(message, "/1/push17")) {
-							try {
-								OSCServer.turnLEDOff();
-							} catch (UnknownHostException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (SocketException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
 							try {
 								turnLEDOff();
 								turnLEDOn("1");
